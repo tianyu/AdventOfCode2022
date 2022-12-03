@@ -54,8 +54,8 @@ private fun Outcome.counterMove(theirs: Move): Move = when ((theirs.id + diff).m
 }
 
 private inline fun <T> playRockPaperScissors(crossinline action: (theirs: Char, ours: Char) -> T) = sequence {
-  readInput("day2.txt").useLines { lines ->
-    lines.forEach { line ->
+  withInputLines("day2.txt") {
+    forEach { line ->
       yield(action(line[0], line[2]))
     }
   }

@@ -17,9 +17,9 @@ private fun part2() {
 }
 
 private fun calories() = sequence {
-  readInput("day1.txt").useLines { lines ->
+  withInputLines("day1.txt") {
     var calories = 0
-    val inventory = lines.iterator()
+    val inventory = iterator()
     while (inventory.hasNext()) {
       when (val item = inventory.next()) {
         "" -> {
