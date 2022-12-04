@@ -8,7 +8,7 @@ private fun main() {
 
   part2 {
     val numberOfOverlappingRanges = sectionAssignmentPairs().count { (left, right) ->
-      left overlapsWith right
+      left.first in right || left.last in right || right in left
     }
     println("The number of overlapping ranges is: $numberOfOverlappingRanges")
   }
@@ -17,19 +17,11 @@ private fun main() {
 private operator fun IntRange.contains(that: IntRange): Boolean =
   first <= that.first && last >= that.last
 
-private infix fun IntRange.overlapsWith(that: IntRange): Boolean =
-  first in that || last in that || that in this
-
 private fun sectionAssignmentPairs() = sequence {
   withInputLines("day4.txt") {
     forEach { line ->
-      val (left, right) = line.split(',')
-      yield(left.asAssignment() to right.asAssignment())
+      val (lo1, hi1, lo2, hi2) = line.split('-', ',').map(String::toInt)
+      yield(lo1..hi1 to lo2..hi2)
     }
   }
-}
-
-private fun String.asAssignment(): IntRange {
-  val (lo, hi) = split('-')
-  return lo.toInt()..hi.toInt()
 }

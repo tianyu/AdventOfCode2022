@@ -20,5 +20,6 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
+    kotlinOptions.useK2 = true
     kotlinOptions.jvmTarget = "17"
 }
