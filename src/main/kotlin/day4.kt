@@ -1,23 +1,17 @@
 private fun main() {
-  part1()
-  println()
-  part2()
-}
-
-private fun part1() {
-  println("-- Part 1 --")
-  val numberOfFullyRedundantRanges = sectionAssignmentPairs().count { (left, right) ->
-    left in right || right in left
+  part1 {
+    val numberOfFullyRedundantRanges = sectionAssignmentPairs().count { (left, right) ->
+      left in right || right in left
+    }
+    println("The number of fully redundant ranges is: $numberOfFullyRedundantRanges")
   }
-  println("The number of fully redundant ranges is: $numberOfFullyRedundantRanges")
-}
 
-private fun part2() {
-  println("--- Part 2 ---")
-  val numberOfOverlappingRanges = sectionAssignmentPairs().count { (left, right) ->
-    left overlapsWith right
+  part2 {
+    val numberOfOverlappingRanges = sectionAssignmentPairs().count { (left, right) ->
+      left overlapsWith right
+    }
+    println("The number of overlapping ranges is: $numberOfOverlappingRanges")
   }
-  println("The number of overlapping ranges is: $numberOfOverlappingRanges")
 }
 
 private operator fun IntRange.contains(that: IntRange): Boolean =

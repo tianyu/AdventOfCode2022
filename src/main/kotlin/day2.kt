@@ -3,31 +3,25 @@ import Outcome.*
 import java.lang.IllegalStateException
 
 private fun main() {
-  part1()
-  println()
-  part2()
-}
+  part1 {
+    val totalScore = playRockPaperScissors { theirs, ours ->
+      val ourMove = ours.asMove()
+      val theirMove = theirs.asMove()
+      val outcome = outcome(theirMove, ourMove)
+      ourMove.score + outcome.score
+    }.sum()
+    println("The total score of (not) following the strategy guide is: $totalScore")
+  }
 
-private fun part1() {
-  println("--- Part 1 ---")
-  val totalScore = playRockPaperScissors { theirs, ours ->
-    val ourMove = ours.asMove()
-    val theirMove = theirs.asMove()
-    val outcome = outcome(theirMove, ourMove)
-    ourMove.score + outcome.score
-  }.sum()
-  println("The total score of (not) following the strategy guide is: $totalScore")
-}
-
-private fun part2() {
-  println("--- Part 2 ---")
-  val totalScore = playRockPaperScissors { theirs, ours ->
-    val theirMove = theirs.asMove()
-    val outcome = ours.asOutcome()
-    val ourMove = outcome.counterMove(theirMove)
-    ourMove.score + outcome.score
-  }.sum()
-  println("The total score of following the strategy guide is: $totalScore")
+  part2 {
+    val totalScore = playRockPaperScissors { theirs, ours ->
+      val theirMove = theirs.asMove()
+      val outcome = ours.asOutcome()
+      val ourMove = outcome.counterMove(theirMove)
+      ourMove.score + outcome.score
+    }.sum()
+    println("The total score of following the strategy guide is: $totalScore")
+  }
 }
 
 private enum class Move(val id: Int) {

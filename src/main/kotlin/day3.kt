@@ -1,35 +1,25 @@
 private fun main() {
-  part1()
-  println()
-  part2()
-}
-
-private fun part1() {
-  println("--- Part 1 ---")
-
-  val totalMistakes = withRucksacks {
-    sumOf { rucksack ->
-      assert(rucksack.length % 2 == 0) { "Rucksack does not have even length: $this" }
-      val (left, right) = rucksack.splitAt(rucksack.length / 2)
-      val mistakes = left.toSet() intersect right.toSet()
-      mistakes.single().priority()
+  part1 {
+    val totalMistakes = withRucksacks {
+      sumOf { rucksack ->
+        assert(rucksack.length % 2 == 0) { "Rucksack does not have even length: $this" }
+        val (left, right) = rucksack.splitAt(rucksack.length / 2)
+        val mistakes = left.toSet() intersect right.toSet()
+        mistakes.single().priority()
+      }
     }
+    println("The total priorities of all misplaced items is: $totalMistakes")
   }
 
-  println("The total priorities of all misplaced items is: $totalMistakes")
-}
-
-private fun part2() {
-  println("--- Part 2 ---")
-
-  val totalBadges = withRucksacks {
-    chunked(3).sumOf { (a, b, c) ->
-      val badges = a.toSet() intersect b.toSet() intersect c.toSet()
-      badges.single().priority()
+  part2 {
+    val totalBadges = withRucksacks {
+      chunked(3).sumOf { (a, b, c) ->
+        val badges = a.toSet() intersect b.toSet() intersect c.toSet()
+        badges.single().priority()
+      }
     }
+    println("The sum of all badge priorities is: $totalBadges")
   }
-
-  println("The sum of all badge priorities is: $totalBadges")
 }
 
 private fun String.splitAt(index: Int) = substring(0, index) to substring(index, length)

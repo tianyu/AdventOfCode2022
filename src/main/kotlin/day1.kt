@@ -1,19 +1,13 @@
 private fun main() {
-  part1()
-  println()
-  part2()
-}
+  part1 {
+    val maxCalories = calories().max()
+    println("The elf carrying the most calories has: $maxCalories")
+  }
 
-private fun part1() {
-  println("--- Part 1 ---")
-  val maxCalories = calories().max()
-  println("The elf carrying the most calories has: $maxCalories")
-}
-
-private fun part2() {
-  println("--- Part 2 ---")
-  val mostCalories = calories().top(3).sum()
-  println("The three elves carrying the most calories has: $mostCalories")
+  part2 {
+    val mostCalories = calories().top(3).sum()
+    println("The three elves carrying the most calories has: $mostCalories")
+  }
 }
 
 private fun calories() = sequence {

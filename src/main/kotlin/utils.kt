@@ -7,3 +7,14 @@ fun readInput(resource: String): InputStreamReader = requireNotNull(getSystemRes
 
 inline fun <T> withInputLines(resource: String, action: Sequence<String>.() -> T): T =
   readInput(resource).useLines(action)
+
+inline fun part1(action: () -> Unit) {
+  println("--- Part 1 ---")
+  action()
+}
+
+inline fun part2(action: () -> Unit) {
+  println()
+  println("--- Part 2 ---")
+  action()
+}
