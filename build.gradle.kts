@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.willowtreeapps.assertk:assertk:0.25")
     testImplementation(kotlin("test"))
 }
 

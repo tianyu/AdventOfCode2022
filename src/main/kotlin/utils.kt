@@ -18,3 +18,21 @@ inline fun part2(action: () -> Unit) {
   println("--- Part 2 ---")
   action()
 }
+
+inline fun tests(action: Tests.() -> Unit) {
+  println("--- Tests ---")
+  Tests.action()
+  println()
+}
+
+object Tests {
+  inline operator fun String.invoke(test: () -> Unit) = runCatching(test)
+    .onSuccess {
+      println("✔   $this")
+    }
+    .getOrElse {
+      println("✘   $this")
+      print("    ")
+      println(it.stackTraceToString().replace("\n", "\n    "))
+    }
+}
