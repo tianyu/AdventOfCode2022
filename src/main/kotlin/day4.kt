@@ -1,16 +1,14 @@
 private fun main() {
-  part1 {
-    val numberOfFullyRedundantRanges = sectionAssignmentPairs().count { (left, right) ->
+  part1("The number of fully overlapping assignments is:") {
+    sectionAssignmentPairs().count { (left, right) ->
       left in right || right in left
     }
-    println("The number of fully redundant ranges is: $numberOfFullyRedundantRanges")
   }
 
-  part2 {
-    val numberOfOverlappingRanges = sectionAssignmentPairs().count { (left, right) ->
+  part2("The number of partially overlapping assignments is:") {
+    sectionAssignmentPairs().count { (left, right) ->
       left.first in right || left.last in right || right in left
     }
-    println("The number of overlapping ranges is: $numberOfOverlappingRanges")
   }
 }
 

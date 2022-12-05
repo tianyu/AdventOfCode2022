@@ -1,6 +1,6 @@
 private fun main() {
-  part1 {
-    val totalMistakes = withRucksacks {
+  part1("The total priorities of all misplaced items is:") {
+    withRucksacks {
       sumOf { rucksack ->
         assert(rucksack.length % 2 == 0) { "Rucksack does not have even length: $this" }
         val (left, right) = rucksack.splitAt(rucksack.length / 2)
@@ -8,17 +8,15 @@ private fun main() {
         mistakes.single().priority()
       }
     }
-    println("The total priorities of all misplaced items is: $totalMistakes")
   }
 
-  part2 {
-    val totalBadges = withRucksacks {
+  part2("The sum of all badge priorities is:") {
+    withRucksacks {
       chunked(3).sumOf { (a, b, c) ->
         val badges = a.toSet() intersect b.toSet() intersect c.toSet()
         badges.single().priority()
       }
     }
-    println("The sum of all badge priorities is: $totalBadges")
   }
 }
 

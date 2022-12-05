@@ -1,12 +1,10 @@
 private fun main() {
-  part1 {
-    val maxCalories = calories().max()
-    println("The elf carrying the most calories has: $maxCalories")
+  part1("The elf carrying the most calories has:") {
+    calories().max()
   }
 
-  part2 {
-    val mostCalories = calories().top(3).sum()
-    println("The three elves carrying the most calories has: $mostCalories")
+  part2("The three elves carrying the most calories has:") {
+    calories().top(3).sum()
   }
 }
 

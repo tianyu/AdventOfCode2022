@@ -1,5 +1,7 @@
 import java.io.InputStreamReader
 import java.lang.ClassLoader.getSystemResourceAsStream
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTimedValue
 
 fun readInput(resource: String): InputStreamReader = requireNotNull(getSystemResourceAsStream(resource)) {
   "Input not found in system resources: $resource"
@@ -8,15 +10,25 @@ fun readInput(resource: String): InputStreamReader = requireNotNull(getSystemRes
 inline fun <T> withInputLines(resource: String, action: Sequence<String>.() -> T): T =
   readInput(resource).useLines(action)
 
-inline fun part1(action: () -> Unit) {
+@OptIn(ExperimentalTime::class)
+inline fun part1(description: String, action: () -> Any) {
   println("--- Part 1 ---")
-  action()
+  val (result, duration) = measureTimedValue(action)
+  print(description)
+  print(' ')
+  println(result)
+  println("Completed in $duration")
 }
 
-inline fun part2(action: () -> Unit) {
+@OptIn(ExperimentalTime::class)
+inline fun part2(description: String, action: () -> Any) {
   println()
   println("--- Part 2 ---")
-  action()
+  val (result, duration) = measureTimedValue(action)
+  print(description)
+  print(' ')
+  println(result)
+  println("Completed in $duration")
 }
 
 inline fun tests(action: Tests.() -> Unit) {

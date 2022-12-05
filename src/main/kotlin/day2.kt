@@ -3,24 +3,22 @@ import Outcome.*
 import java.lang.IllegalStateException
 
 private fun main() {
-  part1 {
-    val totalScore = playRockPaperScissors { theirs, ours ->
+  part1("The total score of (not) following the strategy guide is:") {
+    playRockPaperScissors { theirs, ours ->
       val ourMove = ours.asMove()
       val theirMove = theirs.asMove()
       val outcome = outcome(theirMove, ourMove)
       ourMove.score + outcome.score
     }.sum()
-    println("The total score of (not) following the strategy guide is: $totalScore")
   }
 
-  part2 {
-    val totalScore = playRockPaperScissors { theirs, ours ->
+  part2("The total score of following the strategy guide is:") {
+    playRockPaperScissors { theirs, ours ->
       val theirMove = theirs.asMove()
       val outcome = ours.asOutcome()
       val ourMove = outcome.counterMove(theirMove)
       ourMove.score + outcome.score
     }.sum()
-    println("The total score of following the strategy guide is: $totalScore")
   }
 }
 

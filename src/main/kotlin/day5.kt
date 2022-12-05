@@ -65,14 +65,12 @@ private fun main() {
     }
   }
 
-  part1 {
-    val topCrates = crateMover9000.moveCrates().topCrates()
-    println("Using the CrateMover9000, the crates at the top are: $topCrates")
+  part1("Using the CrateMover9000, the crates at the top are:") {
+    crateMover9000.moveCrates().topCrates()
   }
 
-  part2 {
-    val topCrates = crateMover9001.moveCrates().topCrates()
-    println("Using the CrateMover9001, the crates at the top are: $topCrates")
+  part2("Using the CrateMover9001, the crates at the top are:") {
+    crateMover9001.moveCrates().topCrates()
   }
 }
 
