@@ -3,9 +3,11 @@ import java.lang.ClassLoader.getSystemResourceAsStream
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
-fun readInput(resource: String): InputStreamReader = requireNotNull(getSystemResourceAsStream(resource)) {
+fun inputStream(resource: String) = requireNotNull(getSystemResourceAsStream(resource)) {
   "Input not found in system resources: $resource"
-}.reader()
+}
+
+fun readInput(resource: String): InputStreamReader = inputStream(resource).reader()
 
 inline fun <T> withInputLines(resource: String, action: Sequence<String>.() -> T): T =
   readInput(resource).useLines(action)
