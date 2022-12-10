@@ -28,7 +28,9 @@ inline fun part2(description: String, action: () -> Any) {
   println("--- Part 2 ---")
   val (result, duration) = measureTimedValue(action)
   print(description)
-  print(' ')
+  if (!description.last().isWhitespace()) {
+    print(' ')
+  }
   println(result)
   println("Completed in $duration")
 }
