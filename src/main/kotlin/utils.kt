@@ -52,3 +52,5 @@ object Tests {
       println(it.stackTraceToString().replace("\n", "\n    "))
     }
 }
+
+operator fun <T> List<T>.component6(): T = get(5)
