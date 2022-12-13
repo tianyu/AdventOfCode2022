@@ -1,4 +1,5 @@
 import java.io.InputStreamReader
+import java.io.Reader
 import java.lang.ClassLoader.getSystemResourceAsStream
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
@@ -54,3 +55,10 @@ object Tests {
 }
 
 operator fun <T> List<T>.component6(): T = get(5)
+
+fun Reader.cursor() = Cursor(this)
+
+class Cursor(private val reader: Reader) {
+  var codepoint: Int = reader.read()
+  fun advance(): Int = reader.read().also { codepoint = it }
+}
