@@ -54,6 +54,7 @@ object Tests {
     }
 }
 
+val IntRange.size: Int get() = last - first + 1
 operator fun <T> List<T>.component6(): T = get(5)
 
 fun Reader.cursor() = Cursor(this)
